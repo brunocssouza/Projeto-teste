@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+  output = "../src/app/api/database"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model user {
+  user_id   Bytes   @id @default(dbgenerated("(uuid_to_bin(uuid()))")) @db.Binary(16)
+  user_name String @db.VarChar(45)
+}
+
+model ticket {
+  ticket_id   Bytes   @id @default(dbgenerated("(uuid_to_bin(uuid()))")) @db.Binary(16)
+  ticket_name String @db.VarChar(45)
+}
